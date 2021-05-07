@@ -11,6 +11,7 @@ abstract contract ERC1155Enumerable is ERC1155 {
 
     /**
      * @dev After any transfer, checks if from and to accountTokens should be updated
+     * this function can be very expensive, it reads the storage a lot, be careful why you make use of this.
      *
      * @param from the address that lost tokens
      * @param to the address that fained tokens
@@ -33,6 +34,7 @@ abstract contract ERC1155Enumerable is ERC1155 {
             // here we always have to try to add it if the balance > 0
             // we can not use amounts[i] because a transferBatch could contain
             // twice the same id, and amounts[i] would match for none of them
+            // we still have to check balance though, because transfers can be of 0 (yes...)
             if (checkAddressTo && balanceOf(to, ids[i]) > 0) {
                 _accountTokens[to].add(ids[i]);
             }
