@@ -11,6 +11,7 @@ abstract contract ERC1155Enumerable is ERC1155 {
 
     /**
      * @dev After any transfer, checks if from and to accountTokens should be updated
+     * this function can be very expensive, it reads the storage a lot, be careful why you make use of this.
      *
      * @param from the address that lost tokens
      * @param to the address that fained tokens
