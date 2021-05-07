@@ -43,7 +43,7 @@ abstract contract ERC1155Enumerable is ERC1155 {
      * @dev Two getters - can be removed if we don't want enumeration public
      * but it helps in tests
      */
-    function getAccountTokensNumber(address account)
+    function getAccountTokensCount(address account)
         external
         view
         returns (uint256)
@@ -57,6 +57,35 @@ abstract contract ERC1155Enumerable is ERC1155 {
         returns (uint256)
     {
         return _accountTokens[account].at(index);
+    }
+
+    /**
+     * @dev Returns a paginated list of an account tokens
+     *
+     * @param account The account we want the list of tokens
+     * @param cursor Index to start at
+     * @param perPage How many we want per page
+     *
+     * @return tokenIds the token Ids
+     * @return nextCursor next cursor to use
+     */
+    function getPaginatedAccountTokens(
+        address account,
+        uint256 cursor,
+        uint256 perPage
+    ) external view returns (uint256[] memory tokenIds, uint256 nextCursor) {
+        uint256 itemsCount = _accountTokens[account].length();
+        uint256 length = perPage;
+        if (length > itemsCount - cursor) {
+            length = itemsCount - cursor;
+        }
+
+        tokenIds = new uint256[](length);
+        for (uint256 i; i < length; i++) {
+            tokenIds[i] = _accountTokens[account].at(cursor + i);
+        }
+
+        return (tokenIds, cursor + length);
     }
 
     function _mint(
