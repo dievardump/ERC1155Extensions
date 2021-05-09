@@ -100,7 +100,7 @@ abstract contract ERC1155Enumerable is ERC1155AfterTransfer {
         uint256 cursor,
         uint256 limit
     )
-        external
+        public
         view
         virtual
         returns (
