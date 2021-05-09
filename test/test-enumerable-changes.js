@@ -256,7 +256,7 @@ describe("ERC1155EnumerableTest", function() {
     let nextCursor = 0;
     let ids;
     for(let i = 0; i < pages; i++) {
-      [ids, nextCursor] = await erc1155Test.getPaginatedAccountTokens(
+      [ids, balances, nextCursor] = await erc1155Test.getAccountTokensPaginated(
         address2,
         nextCursor, 2
       );

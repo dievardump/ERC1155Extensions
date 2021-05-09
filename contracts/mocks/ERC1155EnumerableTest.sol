@@ -2,11 +2,13 @@
 
 pragma solidity ^0.8.0;
 
-import "./ERC1155Enumerable.sol";
+import "../ERC1155Enumerable.sol";
 
 /**
  * @title ERC1155EnumerableTest
  * This mock just publicizes internal functions for testing purposes
+ *
+ * This is only for tests purpose do not use it anywhere in
  */
 contract ERC1155EnumerableTest is ERC1155Enumerable {
     constructor(string memory uri) ERC1155(uri) {
