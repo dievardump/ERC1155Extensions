@@ -1,6 +1,7 @@
 {
   "name": "erc1155extensions",
   "version": "0.0.1",
+  "description": "ERC1155Extensions - Some useful extensions for Ethereum's ERC1155 standard",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
